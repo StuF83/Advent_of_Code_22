@@ -15,7 +15,7 @@ input = input.split("\n")
 priority_hash = {}
 priority_values = Range.new(1, 52).to_a
 priority_keys = Range.new("a", "z").to_a.concat(Range.new("A", "Z").to_a)
-item_priority = Hash[priority_keys.zip(priority_values)]
+$item_priority = Hash[priority_keys.zip(priority_values)]
 priority_score_array = []
 
 # we need the length of each string to give us the split between each compartment.
@@ -51,7 +51,9 @@ end
 input.each do | input |
   sack = seperate_items_into_compartmets(input)
   duplicate = find_duplicate_item(sack)
-  priority_score_array << priority_score(duplicate, item_priority)
+  priority_score_array << priority_score(duplicate, $item_priority)
 end
 
 puts "The sum of the item priorities is #{priority_score_array.sum}"
+
+# p item_priority
